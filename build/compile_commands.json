@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/root/launchchain/build",
+  "command": "/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -I/root/launchchain/include -I/root/launchchain/thirdparty/cutlass/include -isystem=/usr/local/cuda/include  --expt-relaxed-constexpr -rdc=true -g --generate-code=arch=compute_90,code=[compute_90,sm_90] -Xcompiler=-fPIC -std=c++17 -x cu -dc /root/launchchain/src/rmsnorm.cu -o CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o",
+  "file": "/root/launchchain/src/rmsnorm.cu"
+},
+{
+  "directory": "/root/launchchain/build",
+  "command": "/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler -I/root/launchchain/include -I/root/launchchain/thirdparty/cutlass/include -isystem=/usr/local/cuda/include  --expt-relaxed-constexpr -rdc=true -g --generate-code=arch=compute_90,code=[compute_90,sm_90] -std=c++17 -x cu -dc /root/launchchain/test/test_rmsnorm.cu -o CMakeFiles/test_rmsnorm.dir/test/test_rmsnorm.cu.o",
+  "file": "/root/launchchain/test/test_rmsnorm.cu"
+}
+]

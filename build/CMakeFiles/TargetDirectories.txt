@@ -1,0 +1,5 @@
+/root/launchchain/build/CMakeFiles/launchchain_kernel.dir
+/root/launchchain/build/CMakeFiles/test_rmsnorm.dir
+/root/launchchain/build/CMakeFiles/test.dir
+/root/launchchain/build/CMakeFiles/edit_cache.dir
+/root/launchchain/build/CMakeFiles/rebuild_cache.dir

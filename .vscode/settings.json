@@ -1,0 +1,22 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "[cuda]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "clang-format.executable": "/usr/bin/clang-format", // 根据你的安装路径调整
+    "C_Cpp.clang_format_style": "file", // 使用项目中的 .clang-format 文件
+    "clangd.arguments": [
+        "--query-driver=/usr/local/cuda/bin/nvcc", // 指定 nvcc 路径
+        "--compile-commands-dir=${workspaceFolder}/build",
+        // 为 .hpp 文件添加 CUDA 编译标志
+        "--header-insertion=never",
+        "--background-index",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--completion-style=detailed",
+        // 添加以下参数
+        "--extra-arg=-xcuda",
+        "--extra-arg=--cuda-gpu-arch=sm_90"
+    ],
+}

@@ -1,0 +1,45 @@
+// 是否检查插件冲突
+"clangd.detectExtensionConflicts": true,
+"clangd.path": "clangd",
+// 查找的头文件路径，每一项前缀 -I
+"clangd.fallbackFlags": [],
+"clangd.arguments": [
+
+    "--background-index",
+    // 标记compelie_commands.json文件的目录位置
+    "--compile-commands-dir=build",
+    // 同时开启的任务数量
+    "-j=12",
+    // 全局补全（会自动补充头文件）
+    "--all-scopes-completion",
+    // 更详细的补全内容
+    "--completion-style=detailed",
+    // Include what you use
+    "--header-insertion=iwyu",
+    // pch优化的位置 disk memory
+    "--pch-storage=memory",
+    "--cross-file-rename",
+    "--enable-config",
+    // clang-format style to apply by default when no .clang-format file is found
+    "--fallback-style=WebKit",
+    "--pretty",
+    "--clang-tidy",
+    "--query-driver=clang++",
+]
+
+# .clangd 配置文件
+CompileFlags:
+  # 添加 CUDA 头文件路径（根据实际安装位置调整）
+  Add: [-I/usr/local/cuda/include, -I/usr/local/cuda/include/cuda_runtime.h]
+  # 告知 clangd 启用 CUDA 模式（模拟 NVCC 行为）
+  Remove: [-xc++, -x c++]  # 移除默认的 C++ 语言模式
+  # 强制将 .cu/.cuh 视为 CUDA 代码
+  Flags: [-x, cu]
+
+# 启用对 CUDA 扩展关键字的识别
+Diagnostics:
+  UnusedIncludes: Strict  # 可选，减少不必要的警告
+
+# 索引优化（大型项目可选）
+Index:
+  Background: Skip  # 或 "Build"，根据性能需求调整
