@@ -1,9 +1,5 @@
-BasedOnStyle: LLVM
-IndentWidth: 4
-TabWidth: 4
-UseTab: Never
-BreakBeforeBraces: Allman
-AllowShortIfStatementsOnASingleLine: false
-IndentCaseLabels: true
+BasedOnStyle: Google
+Language: Cpp,CUDA
 ColumnLimit: 100
-PointerAlignment: Left
+IndentWidth: 4
+UseTab: Never

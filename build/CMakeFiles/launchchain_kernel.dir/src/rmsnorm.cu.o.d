@@ -1,4 +1,4 @@
-CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o : /root/launchchain/src/rmsnorm.cu \
+CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o : /root/autodl-tmp/launchchain/src/rmsnorm.cu \
     /usr/include/stdc-predef.h \
     /usr/local/cuda/include/cuda_runtime.h \
     /usr/local/cuda/include/crt/host_config.h \
@@ -173,8 +173,6 @@ CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o : /root/launchchain/src/rmsno
     /usr/local/cuda/include/crt/sm_80_rt.hpp \
     /usr/local/cuda/include/crt/sm_90_rt.h \
     /usr/local/cuda/include/crt/sm_90_rt.hpp \
-    /usr/local/cuda/include/crt/sm_100_rt.h \
-    /usr/local/cuda/include/crt/sm_100_rt.hpp \
     /usr/local/cuda/include/texture_indirect_functions.h \
     /usr/local/cuda/include/surface_indirect_functions.h \
     /usr/local/cuda/include/crt/cudacc_ext.h \
@@ -182,8 +180,9 @@ CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o : /root/launchchain/src/rmsno
     /usr/include/c++/11/utility \
     /usr/include/c++/11/bits/stl_relops.h \
     /usr/include/c++/11/initializer_list \
-    /root/launchchain/include/rmsnorm.cuh \
-    /root/launchchain/include/utils.cuh \
+    /root/autodl-tmp/launchchain/include/func.cuh \
+    /root/autodl-tmp/launchchain/include/rmsnorm.cuh \
+    /root/autodl-tmp/launchchain/include/utils.cuh \
     /usr/include/c++/11/cstdio \
     /usr/local/cuda/include/cuda.h \
     /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
@@ -256,5 +255,4 @@ CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o : /root/launchchain/src/rmsno
     /usr/include/asm-generic/errno-base.h \
     /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
     /usr/include/c++/11/bits/charconv.h \
-    /usr/include/c++/11/bits/basic_string.tcc \
-    /root/launchchain/include/func.cuh
+    /usr/include/c++/11/bits/basic_string.tcc

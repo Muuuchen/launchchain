@@ -4,7 +4,7 @@
 # compile CUDA with /usr/local/cuda/bin/nvcc
 CUDA_DEFINES = 
 
-CUDA_INCLUDES = -I/root/launchchain/include -I/root/launchchain/thirdparty/cutlass/include -isystem=/usr/local/cuda/include
+CUDA_INCLUDES = -I/root/autodl-tmp/launchchain/include -I/root/autodl-tmp/launchchain/thirdparty/cutlass/include -isystem=/usr/local/cuda/include
 
-CUDA_FLAGS =  --expt-relaxed-constexpr -rdc=true --generate-code=arch=compute_90,code=[compute_90,sm_90] -Xcompiler=-fPIC -std=c++17
+CUDA_FLAGS =  --expt-relaxed-constexpr -rdc=true -g --generate-code=arch=compute_90,code=[compute_90,sm_90] -Xcompiler=-fPIC -std=c++17
 
