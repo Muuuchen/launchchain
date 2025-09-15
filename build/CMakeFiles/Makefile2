@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /root/autodl-tmp/launchchain/build
 
 # The main recursive "all" target.
 all: CMakeFiles/launchchain_kernel.dir/all
+all: CMakeFiles/test_libtorch.dir/all
 all: CMakeFiles/test_rmsnorm.dir/all
 .PHONY : all
 
@@ -73,6 +74,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/launchchain_kernel.dir/clean
+clean: CMakeFiles/test_libtorch.dir/clean
 clean: CMakeFiles/test_rmsnorm.dir/clean
 .PHONY : clean
 
@@ -83,12 +85,12 @@ clean: CMakeFiles/test_rmsnorm.dir/clean
 CMakeFiles/launchchain_kernel.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/launchchain_kernel.dir/build.make CMakeFiles/launchchain_kernel.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/launchchain_kernel.dir/build.make CMakeFiles/launchchain_kernel.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/autodl-tmp/launchchain/build/CMakeFiles --progress-num=1,2,3 "Built target launchchain_kernel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/autodl-tmp/launchchain/build/CMakeFiles --progress-num=1,2,3,4 "Built target launchchain_kernel"
 .PHONY : CMakeFiles/launchchain_kernel.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/launchchain_kernel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/launchchain_kernel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 0
 .PHONY : CMakeFiles/launchchain_kernel.dir/rule
@@ -103,18 +105,44 @@ CMakeFiles/launchchain_kernel.dir/clean:
 .PHONY : CMakeFiles/launchchain_kernel.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/test_libtorch.dir
+
+# All Build rule for target.
+CMakeFiles/test_libtorch.dir/all: CMakeFiles/launchchain_kernel.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_libtorch.dir/build.make CMakeFiles/test_libtorch.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_libtorch.dir/build.make CMakeFiles/test_libtorch.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/autodl-tmp/launchchain/build/CMakeFiles --progress-num=5,6,7 "Built target test_libtorch"
+.PHONY : CMakeFiles/test_libtorch.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_libtorch.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_libtorch.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_libtorch.dir/rule
+
+# Convenience name for target.
+test_libtorch: CMakeFiles/test_libtorch.dir/rule
+.PHONY : test_libtorch
+
+# clean rule for target.
+CMakeFiles/test_libtorch.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_libtorch.dir/build.make CMakeFiles/test_libtorch.dir/clean
+.PHONY : CMakeFiles/test_libtorch.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/test_rmsnorm.dir
 
 # All Build rule for target.
 CMakeFiles/test_rmsnorm.dir/all: CMakeFiles/launchchain_kernel.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_rmsnorm.dir/build.make CMakeFiles/test_rmsnorm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_rmsnorm.dir/build.make CMakeFiles/test_rmsnorm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/autodl-tmp/launchchain/build/CMakeFiles --progress-num=4,5,6 "Built target test_rmsnorm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/autodl-tmp/launchchain/build/CMakeFiles --progress-num=8,9,10 "Built target test_rmsnorm"
 .PHONY : CMakeFiles/test_rmsnorm.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_rmsnorm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_rmsnorm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/autodl-tmp/launchchain/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_rmsnorm.dir/rule

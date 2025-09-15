@@ -93,6 +93,13 @@ test_rmsnorm_EXTERNAL_OBJECTS =
 CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: CMakeFiles/test_rmsnorm.dir/test/test_rmsnorm.cu.o
 CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: CMakeFiles/test_rmsnorm.dir/build.make
 CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: liblaunchchain_kernel.a
+CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: ../thirdparty/libtorch/lib/libtorch.so
+CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: ../thirdparty/libtorch/lib/libc10.so
+CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: ../thirdparty/libtorch/lib/libkineto.a
+CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: /usr/local/cuda/lib64/libnvrtc.so
+CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: ../thirdparty/libtorch/lib/libc10_cuda.so
+CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: ../thirdparty/libtorch/lib/libc10_cuda.so
+CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: ../thirdparty/libtorch/lib/libc10.so
 CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: /usr/local/cuda/lib64/libcudart.so
 CMakeFiles/test_rmsnorm.dir/cmake_device_link.o: CMakeFiles/test_rmsnorm.dir/dlink.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/autodl-tmp/launchchain/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CUDA device code CMakeFiles/test_rmsnorm.dir/cmake_device_link.o"
@@ -112,6 +119,13 @@ test_rmsnorm_EXTERNAL_OBJECTS =
 test_rmsnorm: CMakeFiles/test_rmsnorm.dir/test/test_rmsnorm.cu.o
 test_rmsnorm: CMakeFiles/test_rmsnorm.dir/build.make
 test_rmsnorm: liblaunchchain_kernel.a
+test_rmsnorm: ../thirdparty/libtorch/lib/libtorch.so
+test_rmsnorm: ../thirdparty/libtorch/lib/libc10.so
+test_rmsnorm: ../thirdparty/libtorch/lib/libkineto.a
+test_rmsnorm: /usr/local/cuda/lib64/libnvrtc.so
+test_rmsnorm: ../thirdparty/libtorch/lib/libc10_cuda.so
+test_rmsnorm: ../thirdparty/libtorch/lib/libc10_cuda.so
+test_rmsnorm: ../thirdparty/libtorch/lib/libc10.so
 test_rmsnorm: /usr/local/cuda/lib64/libcudart.so
 test_rmsnorm: CMakeFiles/test_rmsnorm.dir/cmake_device_link.o
 test_rmsnorm: CMakeFiles/test_rmsnorm.dir/link.txt

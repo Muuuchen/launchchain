@@ -140,6 +140,19 @@ launchchain_kernel/fast:
 .PHONY : launchchain_kernel/fast
 
 #=============================================================================
+# Target rules for targets named test_libtorch
+
+# Build rule for target.
+test_libtorch: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_libtorch
+.PHONY : test_libtorch
+
+# fast build rule for target.
+test_libtorch/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_libtorch.dir/build.make CMakeFiles/test_libtorch.dir/build
+.PHONY : test_libtorch/fast
+
+#=============================================================================
 # Target rules for targets named test_rmsnorm
 
 # Build rule for target.
@@ -151,6 +164,30 @@ test_rmsnorm: cmake_check_build_system
 test_rmsnorm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_rmsnorm.dir/build.make CMakeFiles/test_rmsnorm.dir/build
 .PHONY : test_rmsnorm/fast
+
+src/binding.o: src/binding.cu.o
+.PHONY : src/binding.o
+
+# target to build an object file
+src/binding.cu.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/launchchain_kernel.dir/build.make CMakeFiles/launchchain_kernel.dir/src/binding.cu.o
+.PHONY : src/binding.cu.o
+
+src/binding.i: src/binding.cu.i
+.PHONY : src/binding.i
+
+# target to preprocess a source file
+src/binding.cu.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/launchchain_kernel.dir/build.make CMakeFiles/launchchain_kernel.dir/src/binding.cu.i
+.PHONY : src/binding.cu.i
+
+src/binding.s: src/binding.cu.s
+.PHONY : src/binding.s
+
+# target to generate assembly for a file
+src/binding.cu.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/launchchain_kernel.dir/build.make CMakeFiles/launchchain_kernel.dir/src/binding.cu.s
+.PHONY : src/binding.cu.s
 
 src/rmsnorm.o: src/rmsnorm.cu.o
 .PHONY : src/rmsnorm.o
@@ -175,6 +212,30 @@ src/rmsnorm.s: src/rmsnorm.cu.s
 src/rmsnorm.cu.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/launchchain_kernel.dir/build.make CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.s
 .PHONY : src/rmsnorm.cu.s
+
+test/test_libtorch.o: test/test_libtorch.cpp.o
+.PHONY : test/test_libtorch.o
+
+# target to build an object file
+test/test_libtorch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_libtorch.dir/build.make CMakeFiles/test_libtorch.dir/test/test_libtorch.cpp.o
+.PHONY : test/test_libtorch.cpp.o
+
+test/test_libtorch.i: test/test_libtorch.cpp.i
+.PHONY : test/test_libtorch.i
+
+# target to preprocess a source file
+test/test_libtorch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_libtorch.dir/build.make CMakeFiles/test_libtorch.dir/test/test_libtorch.cpp.i
+.PHONY : test/test_libtorch.cpp.i
+
+test/test_libtorch.s: test/test_libtorch.cpp.s
+.PHONY : test/test_libtorch.s
+
+# target to generate assembly for a file
+test/test_libtorch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_libtorch.dir/build.make CMakeFiles/test_libtorch.dir/test/test_libtorch.cpp.s
+.PHONY : test/test_libtorch.cpp.s
 
 test/test_rmsnorm.o: test/test_rmsnorm.cu.o
 .PHONY : test/test_rmsnorm.o
@@ -210,10 +271,17 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... launchchain_kernel"
+	@echo "... test_libtorch"
 	@echo "... test_rmsnorm"
+	@echo "... src/binding.o"
+	@echo "... src/binding.i"
+	@echo "... src/binding.s"
 	@echo "... src/rmsnorm.o"
 	@echo "... src/rmsnorm.i"
 	@echo "... src/rmsnorm.s"
+	@echo "... test/test_libtorch.o"
+	@echo "... test/test_libtorch.i"
+	@echo "... test/test_libtorch.s"
 	@echo "... test/test_rmsnorm.o"
 	@echo "... test/test_rmsnorm.i"
 	@echo "... test/test_rmsnorm.s"

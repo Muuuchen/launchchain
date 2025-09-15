@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/launchchain_kernel.dir/cmake_device_link.o"
+  "CMakeFiles/launchchain_kernel.dir/src/binding.cu.o"
+  "CMakeFiles/launchchain_kernel.dir/src/binding.cu.o.d"
   "CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o"
   "CMakeFiles/launchchain_kernel.dir/src/rmsnorm.cu.o.d"
   "liblaunchchain_kernel.a"

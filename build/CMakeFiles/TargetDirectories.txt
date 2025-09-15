@@ -1,4 +1,5 @@
 /root/autodl-tmp/launchchain/build/CMakeFiles/launchchain_kernel.dir
+/root/autodl-tmp/launchchain/build/CMakeFiles/test_libtorch.dir
 /root/autodl-tmp/launchchain/build/CMakeFiles/test_rmsnorm.dir
 /root/autodl-tmp/launchchain/build/CMakeFiles/test.dir
 /root/autodl-tmp/launchchain/build/CMakeFiles/edit_cache.dir
