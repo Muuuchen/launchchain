@@ -31,10 +31,11 @@
 
 #pragma once
 
-#include "cutlass/cutlass.h"
 #include "cute/arch/cluster_sm90.hpp"
-#include "cutlass/arch/barrier.h"
 #include "cute/container/array.hpp"
+#include "cutlass/arch/barrier.h"
+#include "cutlass/cutlass.h"
+#include "cutlass/pipeline/sm90_pipeline.hpp"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -45,14 +46,14 @@ namespace detail {
 // MSVC work-around
 template <int Stages>
 struct PrefetcherPipelineSharedStorage {
-  using TransactionBarrier = cutlass::arch::ClusterTransactionBarrier;
-  using Barrier = cutlass::arch::ClusterBarrier;
+    using TransactionBarrier = cutlass::arch::ClusterTransactionBarrier;
+    using Barrier = cutlass::arch::ClusterBarrier;
 
-  TransactionBarrier tma_barrier[Stages];
-  Barrier producer_ready_barrier;
+    TransactionBarrier tma_barrier[Stages];
+    Barrier producer_ready_barrier;
 };
 
-} // end namespace detail
+}  // end namespace detail
 
 using namespace cute;
 
@@ -63,99 +64,97 @@ using namespace cute;
 // whether DMA warps are done waiting on griddepcontrol, and if so, stops issuing more TMA loads.
 template <int Stages_>
 class PrefetchPipeline {
-public :
-  static constexpr uint32_t Stages = Stages_;
-  using SharedStorage = detail::PrefetcherPipelineSharedStorage<Stages>;
+   public:
+    static constexpr uint32_t Stages = Stages_;
+    using SharedStorage = detail::PrefetcherPipelineSharedStorage<Stages>;
 
-  using TransactionBarrier = typename SharedStorage::TransactionBarrier;
-  using Barrier = typename SharedStorage::Barrier;
-  using PrefetcherBarrierType = typename TransactionBarrier::ValueType;
+    using TransactionBarrier = typename SharedStorage::TransactionBarrier;
+    using Barrier = typename SharedStorage::Barrier;
+    using PrefetcherBarrierType = typename TransactionBarrier::ValueType;
 
-  struct Params {
-    uint32_t transaction_bytes = 0;
-    uint32_t num_prefetchers = 1;
-    bool should_prefetch = false;
-  };
+    struct Params {
+        uint32_t transaction_bytes = 0;
+        uint32_t num_prefetchers = 1;
+        bool should_prefetch = false;
+    };
 
-  // Constructor
-  CUTLASS_DEVICE
-  PrefetchPipeline(SharedStorage& storage, Params params)
-      : params_(params)
-      , tma_barrier_ptr_(&storage.tma_barrier[0])
-      , producer_ready_barrier_ptr_(&storage.producer_ready_barrier) {
-
-    int lane_predicate = cute::elect_one_sync();
-    if (params.should_prefetch && lane_predicate) {
-      CUTLASS_PRAGMA_UNROLL
-      for (int i = 0; i < Stages; ++i) {
-        tma_barrier_ptr_[i].init(params.num_prefetchers);
-      }
-      producer_ready_barrier_ptr_[0].init(1);
+    // Constructor
+    CUTLASS_DEVICE
+    PrefetchPipeline(SharedStorage& storage, Params params)
+        : params_(params),
+          tma_barrier_ptr_(&storage.tma_barrier[0]),
+          producer_ready_barrier_ptr_(&storage.producer_ready_barrier) {
+        int lane_predicate = cute::elect_one_sync();
+        if (params.should_prefetch && lane_predicate) {
+            CUTLASS_PRAGMA_UNROLL
+            for (int i = 0; i < Stages; ++i) {
+                tma_barrier_ptr_[i].init(params.num_prefetchers);
+            }
+            producer_ready_barrier_ptr_[0].init(1);
+        }
     }
-  }
 
-  CUTLASS_DEVICE
-  void producer_arrive() {
-    if (params_.should_prefetch) {
-      producer_ready_barrier_ptr_[0].arrive();
+    CUTLASS_DEVICE
+    void producer_arrive() {
+        if (params_.should_prefetch) {
+            producer_ready_barrier_ptr_[0].arrive();
+        }
     }
-  }
 
-  CUTLASS_DEVICE
-  bool have_producers_arrived() {
-    if (params_.should_prefetch) {
-      uint32_t barrier_status_ = producer_ready_barrier_ptr_[0].try_wait(0);
-      auto barrier_status = static_cast<BarrierStatus>(barrier_status_);
-      if (barrier_status == BarrierStatus::WaitDone) {
-        return true; // exit prefetcher loop
-      }
-      return false;
+    CUTLASS_DEVICE
+    bool have_producers_arrived() {
+        if (params_.should_prefetch) {
+            uint32_t barrier_status_ = producer_ready_barrier_ptr_[0].try_wait(0);
+            auto barrier_status = static_cast<BarrierStatus>(barrier_status_);
+            if (barrier_status == BarrierStatus::WaitDone) {
+                return true;  // exit prefetcher loop
+            }
+            return false;
+        }
+        return true;
     }
-    return true;
-  }
 
-  CUTLASS_DEVICE
-  void prefetcher_acquire(uint32_t stage, uint32_t phase, bool should_wait) {
-    if (params_.should_prefetch) {
-      if (should_wait) {
-        tma_barrier_ptr_[stage].wait(phase ^ 1);
-      }
-      tma_barrier_ptr_[stage].arrive_and_expect_tx(params_.transaction_bytes);
+    CUTLASS_DEVICE
+    void prefetcher_acquire(uint32_t stage, uint32_t phase, bool should_wait) {
+        if (params_.should_prefetch) {
+            if (should_wait) {
+                tma_barrier_ptr_[stage].wait(phase ^ 1);
+            }
+            tma_barrier_ptr_[stage].arrive_and_expect_tx(params_.transaction_bytes);
+        }
     }
-  }
 
-  CUTLASS_DEVICE
-  void advance_prefetcher_state(uint32_t& stage, uint32_t& phase) {
-    if (params_.should_prefetch) {
-      stage++;
-      if (stage == Stages) {
-        stage = 0;
-        phase ^= 1;
-      }
+    CUTLASS_DEVICE
+    void advance_prefetcher_state(uint32_t& stage, uint32_t& phase) {
+        if (params_.should_prefetch) {
+            stage++;
+            if (stage == Stages) {
+                stage = 0;
+                phase ^= 1;
+            }
+        }
     }
-  }
 
-  CUTLASS_DEVICE
-  void prefetcher_tail(uint32_t stage, uint32_t phase) {
-    if (params_.should_prefetch) {
-      // Wait on any already-issued loads
-      CUTLASS_PRAGMA_UNROLL
-      for (int i = 0; i < stage; ++i) {
-        tma_barrier_ptr_[i].wait(phase);
-      }
+    CUTLASS_DEVICE
+    void prefetcher_tail(uint32_t stage, uint32_t phase) {
+        if (params_.should_prefetch) {
+            // Wait on any already-issued loads
+            CUTLASS_PRAGMA_UNROLL
+            for (int i = 0; i < stage; ++i) {
+                tma_barrier_ptr_[i].wait(phase);
+            }
+        }
     }
-  }
 
-  CUTLASS_DEVICE
-  PrefetcherBarrierType* prefetcher_get_barrier(uint32_t stage) {
-    return reinterpret_cast<PrefetcherBarrierType*>(&tma_barrier_ptr_[stage]);
-  }
+    CUTLASS_DEVICE
+    PrefetcherBarrierType* prefetcher_get_barrier(uint32_t stage) {
+        return reinterpret_cast<PrefetcherBarrierType*>(&tma_barrier_ptr_[stage]);
+    }
 
-private :
-  TransactionBarrier* tma_barrier_ptr_ = nullptr;
-  Barrier* producer_ready_barrier_ptr_ = nullptr;
-  Params params_;
-
+   private:
+    TransactionBarrier* tma_barrier_ptr_ = nullptr;
+    Barrier* producer_ready_barrier_ptr_ = nullptr;
+    Params params_;
 };
 
 }  // end namespace cutlass
