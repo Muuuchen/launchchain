@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"clangd.fallbackFlags": [
+			"-I${workspaceFolder}/include",
+			"-I${workspaceFolder}/thirdparty/cutlass/include",
+			"-I${workspaceFolder}/thirdparty/include",
+			"-I/usr/local/cuda/include",
+			"-std=c++17",
+			"-DDEBUG"
+		],
+		"terminal.integrated.defaultProfile.windows": "Command Prompt",
+		"explorer.compactFolders": false,
+		"explorer.confirmDragAndDrop": false,
+		"explorer.confirmDelete": false,
+		"explorer.copyRelativePathSeparator": "/",
+		"files.associations": {
+			".clang*": "yaml",
+			"*.hpp.in": "cpp",
+			"*.in": "cpp"
+		},
+		"workbench.editorAssociations": {
+			"*.md": "vscode.markdown.preview.editor",
+			"*.svg": "svgPreviewer.customEditor"
+		},
+		"git.confirmSync": false,
+		"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+		"remote.WSL.fileWatcher.polling": true,
+		"cmake.autoSelectActiveFolder": false,
+		"cmake.options.statusBarVisibility": "visible"
+	}
+}

@@ -7,7 +7,7 @@ set(TORCH_CUDA_ARCH_LIST "9.0")  # 告诉libtorch只使用9.0架构
 
 # 手动下载 libtorch
 set(LIBTORCH_DIR ${CMAKE_SOURCE_DIR}/thirdparty/libtorch)
-set(LIBTORCH_URL "https://download.pytorch.org/libtorch/cu126/libtorch-shared-with-deps-2.8.0+cu126.zip")
+set(LIBTORCH_URL "https://download.pytorch.org/libtorch/cu126/libtorch-shared-with-deps-2.8.0%2Bcu126.zip")
 set(LIBTORCH_ZIP ${CMAKE_SOURCE_DIR}/thirdparty/libtorch.zip)
 
 # 检查是否已经存在 libtorch

@@ -9,10 +9,14 @@
     "[cuda]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
+    "clang-format.executable": "/usr/bin/clang-format",
     "files.associations": {
         "*.cu": "cuda-cpp",
-        "*.cuh": "cuda-cpp"
+        "*.cuh": "cuda-cpp",
+        "cassert": "cpp",
+        "system_error": "cpp"
     },
+    "clangd.path": "/usr/bin/clangd",
     "clangd.arguments": [
         "--query-driver=/usr/local/cuda/bin/nvcc", // 指定 nvcc 路径
         "--compile-commands-dir=${workspaceFolder}/build",

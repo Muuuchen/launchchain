@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "/root/launchchain/thirdparty/libtorch/include",
+                "${workspaceFolder}/thirdparty/libtorch/include/torch/csrc/api/include",
+                "${workspaceFolder}/include",
+                "/root/launchchain/thirdparty/libtorch/include/ATen/core"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
