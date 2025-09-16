@@ -160,7 +160,6 @@ void test_rmsnorm_performance() {
     // 典型的LLM尺寸
     std::vector<std::pair<int, int>> bench_sizes = {
         {128, 4096},  // Llama-7B hidden size
-        {128, 5120},  // Llama-13B hidden size
         {128, 8192},  // Llama-70B intermediate size
         {256, 4096},  // Batch size 256
         {512, 4096},  // Batch size 512

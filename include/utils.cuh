@@ -2,18 +2,6 @@
 #define UTILS_CUH
 #include <cstdio>
 
-//    CUDA_CHECK(cudaGetLastError());
-#define CUDA_CHECK(call)                                                       \
-  do {                                                                         \
-    const cudaError_t error_code = call;                                       \
-    if (error_code != cudaSuccess) {                                           \
-      fprintf(stderr, "CUDA Error at %s:%d\n", __FILE__, __LINE__);            \
-      fprintf(stderr, "    Call: %s\n", #call);                                \
-      fprintf(stderr, "    Error: %s (%d)\n", cudaGetErrorString(error_code),  \
-              error_code);                                                     \
-      exit(1);                                                                 \
-    }                                                                          \
-  } while (0)
 
 constexpr int SCALE = 10; // 0.0 0.1 → 1, 0.2 → 2, ..., 1.0 → 10
 constexpr int MIN_VAL = 0;

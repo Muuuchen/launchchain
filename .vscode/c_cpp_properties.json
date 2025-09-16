@@ -4,10 +4,11 @@
             "name": "Linux",
             "includePath": [
                 "${default}",
-                "/root/launchchain/thirdparty/libtorch/include",
+                "${workspaceFolder}/thirdparty/libtorch/include",
                 "${workspaceFolder}/thirdparty/libtorch/include/torch/csrc/api/include",
                 "${workspaceFolder}/include",
-                "/root/launchchain/thirdparty/libtorch/include/ATen/core"
+                "${workspaceFolder}/thirdparty/libtorch/include/ATen/core",
+                "${workspaceFolder}/thirdparty/libtorch/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

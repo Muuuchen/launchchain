@@ -1,4 +1,5 @@
 #include <ATen/core/TensorBody.h>
+
 // #include <pybind11/pybind11.h>
 #include <torch/csrc/autograd/generated/variable_factories.h>
 // #include <torch/extension.h>
@@ -11,10 +12,11 @@
 #include <rmsnorm.cuh>
 #include <utils.cuh>
 
+#include "gemm.hpp"
 #include "binding.hpp"
-#include "cutlass/cutlass.h"
-#include "cutlass/half.h"
-#include "cutlass/numeric_types.h"
+#include <cutlass/cutlass.h>
+#include <cutlass/half.h>
+#include <cutlass/numeric_types.h>
 
 // in cuda impl is fp16
 torch::Tensor rmsnorm_cpp(torch::Tensor input, torch::Tensor weight, int overlap_scale,
@@ -65,7 +67,7 @@ void launch_kernel_wrapper(dim3 grid_dim, dim3 block_dim, size_t shm_size, cudaS
             grid_dim, block_dim, shm_size, stream, output_ptr, input_ptr, weight_ptr, m, n,
             epsilon);
     } else if constexpr (overlap_type == OverlapType::shared) {
-        shm_size = (2 * m * n * prefetch_scale) & (~31);  // floor
+        shm_size = (2 * n * prefetch_scale/10 ) & (~31);  // floor
         LAUNCH_KERNEL_WITH_PDL(
             (rmsnorm_twoPassAlgo_e8_prefetch<overlap_scale, prefetch_scale, OverlapType::shared>),
             grid_dim, block_dim, shm_size, stream, output_ptr, input_ptr, weight_ptr, m, n,
@@ -246,3 +248,38 @@ void kernel_dispatcher(int overlap_scale, int prefetch_scale, dim3 grid_dim, dim
 //           py::arg("input"), py::arg("weight"), py::arg("overlap_scale"),
 //           py::arg("prefetch_scale"), py::arg("overlap_type"));
 // }
+
+
+torch::Tensor gemm(torch::Tensor A, torch::Tensor B, c10::optional<torch::Tensor> out,
+                   torch::Tensor D, int overlap_scale, int prefetch_scale) {
+    float overlap_ratio = overlap_scale / 10.0;
+    float prefetch_ratio = prefetch_scale /10.0;
+  torch::Tensor C;
+  if (out.has_value()) { // Output tensor was provided. So we will use it.
+    C = out.value();
+  } else {
+    const int M = A.sizes()[0];
+    const int N = B.sizes()[1];
+
+    auto c_options =
+        torch::TensorOptions().device(torch::kCUDA).dtype(A.dtype());
+    C = torch::empty({M, N}, c_options);
+  }
+  // Check that all tensors are allocated on GPU device.
+  if (!(A.device().is_cuda() && B.device().is_cuda() && C.device().is_cuda()))
+    throw std::invalid_argument("gemm only supports GPU device. Use "
+                                ".to(device=torch.device('cuda'))");
+  torch::Tensor _A = A.contiguous();
+  torch::Tensor _B = B.contiguous();
+  torch::Tensor _C = C.contiguous();
+  torch::Tensor _D = D.contiguous();
+
+  gemm_with_prefetch_type_check(_A, _B, _C, _D, overlap_ratio,
+                                        prefetch_ratio);
+  if (!C.is_contiguous())
+    C.copy_(_C);
+
+  // Return the Torch tensor back to PyTorch
+  return C;
+}
+

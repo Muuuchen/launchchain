@@ -4,7 +4,9 @@
 #include <ATen/core/TensorBody.h>
 #include <torch/csrc/autograd/generated/variable_factories.h>
 #include <torch/torch.h>
-
+#include <cutlass/cutlass.h>
+#include <cutlass/half.h>
+#include <cutlass/numeric_types.h>
 #include <launcher.cuh>
 #include <rmsnorm.cuh>
 #include <utils.cuh>
@@ -18,5 +20,9 @@ void kernel_dispatcher(int overlap_scale, int prefetch_scale, dim3 grid_dim, dim
 torch::Tensor rmsnorm_cpp(torch::Tensor input, torch::Tensor Weight, int overlap_scale,
                           int prefetch_scale, int overlap_type);
 
-                          
+
+torch::Tensor gemm(torch::Tensor A, torch::Tensor B,
+                    c10::optional<torch::Tensor> out,
+                    torch::Tensor D, int overlap_scale,
+                    int prefetch_scale);  
 #endif

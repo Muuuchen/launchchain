@@ -14,7 +14,8 @@
         "*.cu": "cuda-cpp",
         "*.cuh": "cuda-cpp",
         "cassert": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "regex": "cpp"
     },
     "clangd.path": "/usr/bin/clangd",
     "clangd.arguments": [

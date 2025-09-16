@@ -70,6 +70,7 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -rdc=true")  # 启用可重定位设�
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cutlass/include
+     ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cutlass/tools/util/include
     ${TORCH_INCLUDE_DIRS}  # 添加 libtorch 头文件路径
 )
 

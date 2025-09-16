@@ -1,0 +1,420 @@
+Consolidate compiler generated dependencies of target launchchain_kernel
+[  9%] Building CUDA object CMakeFiles/launchchain_kernel.dir/src/gemm.cu.o
+/root/autodl-tmp/launchchain/src/gemm.cu(60): error: Shape is not a template
+    using TileShape = Shape<_64, _64, _128>;
+                      ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(60): error: identifier "_64" is undefined
+    using TileShape = Shape<_64, _64, _128>;
+                            ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(60): error: identifier "_128" is undefined
+    using TileShape = Shape<_64, _64, _128>;
+                                      ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(63): error: Shape is not a template
+        Shape<_1, _1, _1>;
+        ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(63): error: identifier "_1" is undefined
+        Shape<_1, _1, _1>;
+              ^
+
+/root/autodl-tmp/launchchain/thirdparty/cutlass/include/cutlass/epilogue/collective/collective_builder.hpp(71): error: static assertion failed with "Could not build a collective epilogue for given parameters."
+    static_assert(cutlass::detail::dependent_false<ArchTag>,
+    ^
+          detected during instantiation of class "cutlass::epilogue::collective::CollectiveBuilder<ArchTag, OpClass, TileShape_MNK, ClusterShape_MNK, EpilogueTileType, ElementAccumulator, ElementCompute, ElementC, GmemLayoutTagC, AlignmentC, ElementD, GmemLayoutTagD, AlignmentD, EpilogueScheduleType, FusionOpOrCallbacks, Enable> [with ArchTag=cutlass::arch::Sm90, OpClass=cutlass::arch::OpClassTensorOp, TileShape_MNK=<error-type>, ClusterShape_MNK=<error-type>, EpilogueTileType=cutlass::epilogue::collective::EpilogueTileAuto, ElementAccumulator=float, ElementCompute=float, ElementC=cutlass::float_e4m3_t, GmemLayoutTagC=cutlass::layout::ColumnMajor, AlignmentC=16, ElementD=cutlass::float_e4m3_t, GmemLayoutTagD=cutlass::layout::ColumnMajor, AlignmentD=16, EpilogueScheduleType=cutlass::epilogue::TmaWarpSpecialized, FusionOpOrCallbacks=cutlass::epilogue::fusion::LinearCombination<cutlass::float_e4m3_t, float, cutlass::float_e4m3_t, float, cutlass::FloatRoundStyle::round_to_nearest>, Enable=void]" at line 73 of /root/autodl-tmp/launchchain/src/gemm.cu
+
+/root/autodl-tmp/launchchain/src/gemm.cu(73): error: class "cutlass::epilogue::collective::CollectiveBuilder<cutlass::arch::Sm90, cutlass::arch::OpClassTensorOp, <error-type>, <error-type>, cutlass::epilogue::collective::EpilogueTileAuto, float, float, cutlass::float_e4m3_t, cutlass::layout::ColumnMajor, 16, cutlass::float_e4m3_t, cutlass::layout::ColumnMajor, 16, cutlass::epilogue::TmaWarpSpecialized, cutlass::epilogue::fusion::LinearCombination<cutlass::float_e4m3_t, float, cutlass::float_e4m3_t, float, cutlass::FloatRoundStyle::round_to_nearest>, void>" has no member "CollectiveOp"
+            ElementD, LayoutD, AlignmentD, EpilogueSchedule>::CollectiveOp;
+                                                              ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(80): error: name followed by "::" must be a class or namespace name
+                sizeof(typename CollectiveEpilogue::SharedStorage))>,
+                                ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(80): error: a class or namespace qualified name is required
+                sizeof(typename CollectiveEpilogue::SharedStorage))>,
+                                ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(80): error: expected a ")"
+                sizeof(typename CollectiveEpilogue::SharedStorage))>,
+                                                  ^
+
+/root/autodl-tmp/launchchain/thirdparty/cutlass/include/cutlass/gemm/collective/collective_builder_decl.hpp(94): error: static assertion failed with "Could not build a collective for given parameters."
+    static_assert(sizeof(ElementA) == 0, "Could not build a collective for given parameters.");
+    ^
+          detected during instantiation of class "cutlass::gemm::collective::CollectiveBuilder<ArchTag, OpClass, ElementA, GmemLayoutA, AlignmentA, ElementB, GmemLayoutB, AlignmentB, ElementAccumulator, TileShape_MNK, ClusterShape_MNK, StageCountType, KernelScheduleType, Enable> [with ArchTag=cutlass::arch::Sm90, OpClass=cutlass::arch::OpClassTensorOp, ElementA=cutlass::float_e4m3_t, GmemLayoutA=cutlass::layout::RowMajor, AlignmentA=16, ElementB=cutlass::float_e5m2_t, GmemLayoutB=cutlass::layout::ColumnMajor, AlignmentB=16, ElementAccumulator=float, TileShape_MNK=<error-type>, ClusterShape_MNK=<error-type>, StageCountType=cutlass::gemm::collective::StageCountAutoCarveout<<error-constant>>, KernelScheduleType=cutlass::gemm::KernelTmaWarpSpecializedFP8FastAccumWithPrefetchAndSplitDMA, Enable=void]" at line 81 of /root/autodl-tmp/launchchain/src/gemm.cu
+
+/root/autodl-tmp/launchchain/src/gemm.cu(81): error: class "cutlass::gemm::collective::CollectiveBuilder<cutlass::arch::Sm90, cutlass::arch::OpClassTensorOp, cutlass::float_e4m3_t, cutlass::layout::RowMajor, 16, cutlass::float_e5m2_t, cutlass::layout::ColumnMajor, 16, float, <error-type>, <error-type>, cutlass::gemm::collective::StageCountAutoCarveout<<error-constant>>, cutlass::gemm::KernelTmaWarpSpecializedFP8FastAccumWithPrefetchAndSplitDMA, void>" has no member "CollectiveOp"
+            KernelSchedule>::CollectiveOp;
+                             ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(84): error: Shape is not a template
+        Shape<int, int, int, int>,
+        ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(88): error: incomplete type is not allowed
+    Gemm gemm;
+         ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(91): error: incomplete type is not allowed
+    using EpilogueOutputOp = typename Gemm::EpilogueOutputOp;
+                                      ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(92): error: a class or namespace qualified name is required
+    using ElementScalar = typename EpilogueOutputOp::ElementScalar;
+                                   ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(92): error: expected a ";"
+    using ElementScalar = typename EpilogueOutputOp::ElementScalar;
+                                                   ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(94): error: incomplete type is not allowed
+    using StrideA = typename Gemm::GemmKernel::StrideA;
+                             ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(95): error: incomplete type is not allowed
+    using StrideB = typename Gemm::GemmKernel::StrideB;
+                             ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(96): error: incomplete type is not allowed
+    using StrideC = typename Gemm::GemmKernel::StrideC;
+                             ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(97): error: incomplete type is not allowed
+    using StrideD = typename Gemm::GemmKernel::StrideD;
+                             ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(107): error: no instance of overloaded function "cutlass::make_cute_packed_stride" matches the argument list
+            argument types are: (<error-type>, cute::tuple<int32_t, int32_t, int32_t>)
+        cutlass::make_cute_packed_stride(StrideA{}, cute::make_shape(M, K, 1));
+        ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(552): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(531): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(512): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(486): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(465): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(446): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(423): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(406): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(389): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(357): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(328): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(302): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(275): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(255): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(237): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(214): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(196): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(179): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT>, cute::C<1>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(149): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, cute::C<0>>, cute::array<int32_t, RankT_>, cute::array<IntT, RankT_>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(129): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, StrideIntT, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, StrideIntT, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(118): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<StrideIntT, cute::C<1>, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<StrideIntT, cute::Int<1>, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(96): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(78): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(63): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(52): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(109): error: no instance of overloaded function "cutlass::make_cute_packed_stride" matches the argument list
+            argument types are: (<error-type>, cute::tuple<int32_t, int32_t, int32_t>)
+        cutlass::make_cute_packed_stride(StrideB{}, cute::make_shape(N, K, 1));
+        ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(552): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(531): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(512): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(486): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(465): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(446): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(423): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(406): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(389): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(357): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(328): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(302): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(275): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(255): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(237): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(214): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(196): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(179): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT>, cute::C<1>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(149): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, cute::C<0>>, cute::array<int32_t, RankT_>, cute::array<IntT, RankT_>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(129): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, StrideIntT, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, StrideIntT, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(118): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<StrideIntT, cute::C<1>, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<StrideIntT, cute::Int<1>, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(96): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(78): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(63): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(52): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(111): error: no instance of overloaded function "cutlass::make_cute_packed_stride" matches the argument list
+            argument types are: (<error-type>, cute::tuple<int32_t, int32_t, int32_t>)
+        cutlass::make_cute_packed_stride(StrideC{}, cute::make_shape(M, N, 1));
+        ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(552): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(531): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(512): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(486): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(465): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(446): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(423): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(406): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(389): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(357): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(328): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(302): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(275): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(255): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(237): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(214): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(196): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(179): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT>, cute::C<1>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(149): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, cute::C<0>>, cute::array<int32_t, RankT_>, cute::array<IntT, RankT_>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(129): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, StrideIntT, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, StrideIntT, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(118): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<StrideIntT, cute::C<1>, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<StrideIntT, cute::Int<1>, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(96): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(78): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(63): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(52): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(113): error: no instance of overloaded function "cutlass::make_cute_packed_stride" matches the argument list
+            argument types are: (<error-type>, cute::tuple<int32_t, int32_t, int32_t>)
+        cutlass::make_cute_packed_stride(StrideD{}, cute::make_shape(M, N, 1));
+        ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(552): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(531): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(512): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<cute::C<1>, IntT>, IntT, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(486): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 5UL>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(465): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>, cute::C<0>>, cute::array<int32_t, 4UL>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(446): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>, cute::C<0>>, cute::array<int32_t, 3UL>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(423): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(406): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(389): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(357): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(328): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(302): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, cute::Stride<IntT, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(275): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT, IntT>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(255): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT, IntT>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(237): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::Stride<cute::C<1>, IntT>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(214): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 5UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(196): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT, IntT>, cute::C<1>>, cute::array<IntT, 4UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(179): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<cute::Stride<IntT, IntT>, cute::C<1>>, cute::array<IntT, 3UL>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(149): note #3322-D: number of parameters of function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, cute::C<0>>, cute::array<int32_t, RankT_>, cute::array<IntT, RankT_>, cutlass::conv::Operator)" does not match the call
+  make_cute_packed_stride(
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(129): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, StrideIntT, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, StrideIntT, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(118): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<StrideIntT, cute::C<1>, cute::C<0>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<StrideIntT, cute::Int<1>, cute::Int<0>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(96): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(78): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>, int64_t>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>, int64_t> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(63): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<cute::C<1>, IntT>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<cute::Int<1>, IntT> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+/root/autodl-tmp/launchchain/thirdparty/cutlass/tools/util/include/cutlass/util/packed_stride.hpp(52): note #3327-D: candidate function template "cutlass::make_cute_packed_stride(cute::Stride<IntT, cute::C<1>>, cute::tuple<int32_t, int32_t, int32_t>)" failed deduction
+  make_cute_packed_stride(cute::Stride<IntT, cute::Int<1>> s, cute::Shape<int,int,int> shape_MKL) {
+  ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(119): error: incomplete type is not allowed
+    typename Gemm::Arguments arguments{cutlass::gemm::GemmUniversalMode::kGemm,
+             ^
+
+/root/autodl-tmp/launchchain/src/gemm.cu(137): error: incomplete type is not allowed
+    size_t workspace_size = Gemm::get_workspace_size(arguments);
+                            ^
+
+27 errors detected in the compilation of "/root/autodl-tmp/launchchain/src/gemm.cu".
+gmake[2]: *** [CMakeFiles/launchchain_kernel.dir/build.make:90: CMakeFiles/launchchain_kernel.dir/src/gemm.cu.o] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/launchchain_kernel.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2
