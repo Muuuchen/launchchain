@@ -1,8 +1,1 @@
-[1/8] Building CUDA object CMakeFiles/launchchain_kernel.dir/src/binding.cu.o
-[2/8] Building CUDA object CMakeFiles/launchchain_kernel.dir/src/gemm.cu.o
-[3/8] Linking CUDA static library CMakeFiles/launchchain_kernel.dir/cmake_device_link.o
-[4/8] Linking CUDA static library liblaunchchain_kernel.a
-[5/8] Linking CXX executable CMakeFiles/test_libtorch.dir/cmake_device_link.o
-[6/8] Linking CUDA executable CMakeFiles/test_rmsnorm.dir/cmake_device_link.o
-[7/8] Linking CUDA executable test_rmsnorm
-[8/8] Linking CXX executable test_libtorch
+ninja: no work to do.
